@@ -14,19 +14,22 @@
     '@media(max-width:480px){.soulgery-fab{bottom:20px;right:20px;padding:14px 22px;font-size:13px}}' +
     '.soulgery-overlay{position:fixed;inset:0;background:rgba(14,58,91,0.55);display:flex;align-items:center;justify-content:center;z-index:10000;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;padding:20px;font-family:"Open Sans",sans-serif}' +
     '.soulgery-overlay.active{opacity:1;visibility:visible}' +
-    '.soulgery-modal{background:#fff;border-radius:20px;max-width:520px;width:100%;padding:48px 40px 40px;position:relative;box-shadow:0 25px 60px rgba(14,58,91,0.25);transform:translateY(20px) scale(0.95);transition:transform .35s cubic-bezier(0.34,1.56,0.64,1)}' +
+    '.soulgery-modal{background:#fff;border-radius:20px;max-width:580px;width:100%;padding:48px 40px 40px;position:relative;box-shadow:0 25px 60px rgba(14,58,91,0.25);transform:translateY(20px) scale(0.95);transition:transform .35s cubic-bezier(0.34,1.56,0.64,1)}' +
     '.soulgery-overlay.active .soulgery-modal{transform:translateY(0) scale(1)}' +
     '.soulgery-close{position:absolute;top:16px;right:20px;background:none;border:none;font-size:28px;color:#0E3A5B;cursor:pointer;line-height:1;padding:4px 8px;border-radius:8px;transition:color .2s ease,background .2s ease}' +
     '.soulgery-close:hover{color:#2665F0;background:#E2ECF8}' +
     '.soulgery-title{font-family:bookmania,Georgia,"Times New Roman",serif;color:#0E3A5B;font-size:28px;font-weight:400;text-align:center;margin:0 0 6px}' +
     '.soulgery-subtitle{color:#849172;font-size:15px;text-align:center;margin:0 0 32px;font-family:"Open Sans",sans-serif}' +
-    '.soulgery-platforms{display:grid;grid-template-columns:1fr 1fr;gap:14px}' +
+    '.soulgery-platforms{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:0}' +
     '.soulgery-platform-card{display:flex;flex-direction:column;align-items:center;gap:6px;background:#F7F9FC;border:1.5px solid #E2ECF8;border-radius:14px;padding:24px 16px 20px;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;cursor:pointer}' +
     '.soulgery-platform-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(14,58,91,0.12);border-color:#2665F0}' +
     '.soulgery-platform-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;margin-bottom:4px}' +
     '.soulgery-platform-icon svg{width:100%;height:100%}' +
     '.soulgery-platform-name{font-weight:700;font-size:14px;color:#0E3A5B;font-family:"Open Sans",sans-serif}' +
     '.soulgery-platform-format{font-size:12px;color:#849172;font-family:"Open Sans",sans-serif}' +
+    '@media(max-width:600px){' +
+      '.soulgery-platforms{grid-template-columns:1fr 1fr;gap:12px}' +
+    '}' +
     '@media(max-width:480px){' +
       '.soulgery-modal{padding:36px 24px 28px}' +
       '.soulgery-title{font-size:24px}' +
@@ -47,21 +50,29 @@
       '<h2 class="soulgery-title">Get Your Copy</h2>' +
       '<p class="soulgery-subtitle">Available on your favorite platform</p>' +
       '<div class="soulgery-platforms">' +
+        '<a href="https://www.storytel.com/in/books/soulgery-a-lifelong-guide-to-unlocking-your-potential-12506798" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Storytel">' +
+          '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="8" width="20" height="28" rx="2" fill="#E2ECF8"/><path d="M14 14h12M14 19h12M14 24h8" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round"/><circle cx="35" cy="28" r="9" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><path d="M32 25v6l5-3z" fill="#0E3A5B"/></svg></div>' +
+          '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Storytel</span><span class="soulgery-platform-format">Audiobook</span></div>' +
+        '</a>' +
+        '<a href="https://www.audible.in/pd/Soulgery-Audiobook/B0FTNJK8JQ" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Audible">' +
+          '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 18c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round"/><path d="M12 20c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/><rect x="18" y="22" width="12" height="14" rx="6" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><path d="M20 36v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4" stroke="#0E3A5B" stroke-width="2.5"/><circle cx="24" cy="29" r="2" fill="#0E3A5B"/></svg></div>' +
+          '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Audible</span><span class="soulgery-platform-format">Audiobook</span></div>' +
+        '</a>' +
+        '<a href="https://www.everand.com/audiobook/923526246/Soulgery-A-Lifelong-Guide-to-Unlocking-Your-Potential" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Everand">' +
+          '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="16" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><path d="M18 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round"/><path d="M21 23c0-1.7 1.3-3 3-3s3 1.3 3 3" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="27" r="2" fill="#0E3A5B"/><path d="M24 29v5" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round"/></svg></div>' +
+          '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Everand</span><span class="soulgery-platform-format">Audiobook</span></div>' +
+        '</a>' +
         '<a href="https://www.amazon.com/Soulgery-Lifelong-Guide-Unlocking-Potential/dp/B0FF81HWH4" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Amazon Books">' +
           '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M28 6H20C18.9 6 18 6.9 18 8v28c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z" fill="#E2ECF8"/><path d="M14 14H10c-1.1 0-2 .9-2 2v20c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V16c0-1.1-.9-2-2-2z" fill="#E2ECF8"/><path d="M38 10h-4c-1.1 0-2 .9-2 2v24c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V12c0-1.1-.9-2-2-2z" fill="#E2ECF8"/><path d="M6 40c0 0 8 6 18 6s18-6 18-6" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round"/><path d="M33 42l5 2 2-5" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
           '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Amazon Books</span><span class="soulgery-platform-format">Paperback & Kindle</span></div>' +
         '</a>' +
-        '<a href="#" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Storytel">' +
-          '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="8" width="20" height="28" rx="2" fill="#E2ECF8"/><path d="M14 14h12M14 19h12M14 24h8" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round"/><circle cx="35" cy="28" r="9" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><path d="M32 25v6l5-3z" fill="#0E3A5B"/></svg></div>' +
-          '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Storytel</span><span class="soulgery-platform-format">Audiobook</span></div>' +
-        '</a>' +
-        '<a href="https://www.amazon.com/Soulgery-Lifelong-Guide-Unlocking-Potential/dp/B0FTMX2RXH" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Audible">' +
-          '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 18c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round"/><path d="M12 20c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/><rect x="18" y="22" width="12" height="14" rx="6" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><path d="M20 36v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4" stroke="#0E3A5B" stroke-width="2.5"/><circle cx="24" cy="29" r="2" fill="#0E3A5B"/></svg></div>' +
-          '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Audible</span><span class="soulgery-platform-format">Audiobook</span></div>' +
-        '</a>' +
-        '<a href="#" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Kobo">' +
+        '<a href="https://www.kobo.com" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Kobo">' +
           '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="6" width="28" height="36" rx="4" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><rect x="16" y="14" width="16" height="12" rx="2" fill="#fff" stroke="#0E3A5B" stroke-width="2"/><path d="M16 32h16" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round"/><path d="M16 36h10" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round" opacity="0.4"/></svg></div>' +
           '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Kobo</span><span class="soulgery-platform-format">eBook</span></div>' +
+        '</a>' +
+        '<a href="https://play.google.com/store/books" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Google Play Books">' +
+          '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 8h20l6 6v22c0 2.2-1.8 4-4 4H14c-2.2 0-4-1.8-4-4V12c0-2.2 1.8-4 4-4z" fill="#E2ECF8"/><path d="M34 8l6 6h-6V8z" fill="#fff" stroke="#0E3A5B" stroke-width="1.5"/><path d="M14 8h20l6 6v22c0 2.2-1.8 4-4 4H14c-2.2 0-4-1.8-4-4V12c0-2.2 1.8-4 4-4z" stroke="#0E3A5B" stroke-width="2.5" fill="none"/><path d="M16 22h16M16 27h16M16 32h10" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round"/></svg></div>' +
+          '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Google Play Books</span><span class="soulgery-platform-format">eBook</span></div>' +
         '</a>' +
       '</div>' +
     '</div>';
