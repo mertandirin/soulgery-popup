@@ -52,14 +52,15 @@
     '}';
   document.head.appendChild(css);
 
-  /* Platform logo SVGs as data URIs */
+  /* Platform logos hosted on GitHub Pages */
+  var baseUrl = 'https://mertandirin.github.io/soulgery-popup/logos/';
   var logos = {
-    storytel: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23FF6B00'/%3E%3Cpath d='M15 20.5c0-5 4-9 9-9s9 4 9 9' stroke='%23fff' stroke-width='2.8' stroke-linecap='round' fill='none'/%3E%3Crect x='14' y='22' width='5' height='9' rx='2.5' fill='%23fff'/%3E%3Crect x='29' y='22' width='5' height='9' rx='2.5' fill='%23fff'/%3E%3Cpath d='M19 31v2c0 2.2 1.8 4 4 4h2' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E",
-    audible: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23F8991D'/%3E%3Cpath d='M24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' fill='none'/%3E%3Cpath d='M24 31c-3.9 0-7-3.1-7-7s3.1-7 7-7 7 3.1 7 7' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' fill='none'/%3E%3Cpath d='M24 26c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E",
-    everand: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23E74C2D'/%3E%3Cpath d='M14 24c0-5.5 4.5-10 10-10 4.4 0 8.1 2.8 9.4 6.8' stroke='%23fff' stroke-width='3' stroke-linecap='round' fill='none'/%3E%3Cpath d='M14 24h16' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M24 24c0 5.5-4.5 10-10 10' stroke='%23fff' stroke-width='3' stroke-linecap='round' fill='none' opacity='.6'/%3E%3C/svg%3E",
-    amazon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23232F3E'/%3E%3Cpath d='M12 30c0 0 6 5 12 5s12-5 12-5' stroke='%23FF9900' stroke-width='2.8' stroke-linecap='round' fill='none'/%3E%3Cpath d='M30 31l4 1.5 1.5-4' stroke='%23FF9900' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M17 14h3l2 8 3-6 3 6 2-8h3' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E",
-    kobo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23BF0811'/%3E%3Crect x='12' y='10' width='24' height='28' rx='3' fill='none' stroke='%23fff' stroke-width='2.5'/%3E%3Cpath d='M20 10v28' stroke='%23fff' stroke-width='2' opacity='.4'/%3E%3Cpath d='M25 20h7M25 25h7M25 30h5' stroke='%23fff' stroke-width='2' stroke-linecap='round' opacity='.8'/%3E%3C/svg%3E",
-    googleplay: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23fff'/%3E%3Crect x='.5' y='.5' width='47' height='47' rx='10' fill='none' stroke='%23ddd'/%3E%3Cpath d='M14 10l20 14-20 14V10z' fill='%234285F4'/%3E%3Cpath d='M14 10l12 14H14V10z' fill='%2334A853'/%3E%3Cpath d='M14 38l12-14H14v14z' fill='%23EA4335'/%3E%3Cpath d='M26 24l8-4.7v9.4L26 24z' fill='%23FBBC05'/%3E%3C/svg%3E"
+    storytel: baseUrl + 'storytel.png',
+    audible: baseUrl + 'audible.png',
+    everand: baseUrl + 'everand.png',
+    amazon: baseUrl + 'amazon.png',
+    kobo: baseUrl + 'kobo.png',
+    googleplay: baseUrl + 'googleplay.png'
   };
 
   var overlay = document.createElement('div');
