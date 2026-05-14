@@ -1,5 +1,9 @@
 <script>
 (function() {
+  var hasParam = window.location.search.indexOf('india_ads') !== -1;
+  if (hasParam) sessionStorage.setItem('soulgery_india', '1');
+  if (!hasParam && !sessionStorage.getItem('soulgery_india')) return;
+
   if (document.getElementById('soulgeryOverlay')) return;
 
   var css = document.createElement('style');

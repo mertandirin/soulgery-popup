@@ -1,4 +1,9 @@
 (function() {
+  /* Only activate for ?india_ads visitors — remember across pages */
+  var hasParam = window.location.search.indexOf('india_ads') !== -1;
+  if (hasParam) sessionStorage.setItem('soulgery_india', '1');
+  if (!hasParam && !sessionStorage.getItem('soulgery_india')) return;
+
   if (document.getElementById('soulgeryOverlay')) return;
 
   var link = document.createElement('link');
