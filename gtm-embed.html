@@ -44,22 +44,22 @@
       '<p class="soulgery-subtitle">Available on your favorite platform</p>' +
       '<div class="soulgery-platforms">' +
 
-        '<a href="#" class="soulgery-platform-card" target="_blank" rel="noopener">' +
+        '<a href="https://www.amazon.com/Soulgery-Lifelong-Guide-Unlocking-Potential/dp/B0FF81HWH4" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Amazon Books">' +
           '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M28 6H20C18.9 6 18 6.9 18 8v28c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z" fill="#E2ECF8"/><path d="M14 14H10c-1.1 0-2 .9-2 2v20c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V16c0-1.1-.9-2-2-2z" fill="#E2ECF8"/><path d="M38 10h-4c-1.1 0-2 .9-2 2v24c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V12c0-1.1-.9-2-2-2z" fill="#E2ECF8"/><path d="M6 40c0 0 8 6 18 6s18-6 18-6" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round"/><path d="M33 42l5 2 2-5" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
           '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Amazon Books</span><span class="soulgery-platform-format">Paperback & Kindle</span></div>' +
         '</a>' +
 
-        '<a href="#" class="soulgery-platform-card" target="_blank" rel="noopener">' +
+        '<a href="#" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Storytel">' +
           '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="8" width="20" height="28" rx="2" fill="#E2ECF8"/><path d="M14 14h12M14 19h12M14 24h8" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round"/><circle cx="35" cy="28" r="9" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><path d="M32 25v6l5-3z" fill="#0E3A5B"/></svg></div>' +
           '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Storytel</span><span class="soulgery-platform-format">Audiobook</span></div>' +
         '</a>' +
 
-        '<a href="#" class="soulgery-platform-card" target="_blank" rel="noopener">' +
+        '<a href="https://www.amazon.com/Soulgery-Lifelong-Guide-Unlocking-Potential/dp/B0FTMX2RXH" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Audible">' +
           '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 18c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round"/><path d="M12 20c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/><rect x="18" y="22" width="12" height="14" rx="6" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><path d="M20 36v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4" stroke="#0E3A5B" stroke-width="2.5"/><circle cx="24" cy="29" r="2" fill="#0E3A5B"/></svg></div>' +
           '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Audible</span><span class="soulgery-platform-format">Audiobook</span></div>' +
         '</a>' +
 
-        '<a href="#" class="soulgery-platform-card" target="_blank" rel="noopener">' +
+        '<a href="#" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Kobo">' +
           '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="6" width="28" height="36" rx="4" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><rect x="16" y="14" width="16" height="12" rx="2" fill="#fff" stroke="#0E3A5B" stroke-width="2"/><path d="M16 32h16" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round"/><path d="M16 36h10" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round" opacity="0.4"/></svg></div>' +
           '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Kobo</span><span class="soulgery-platform-format">eBook</span></div>' +
         '</a>' +
@@ -74,30 +74,44 @@
   fab.textContent = 'GET THE BOOK';
   document.body.appendChild(fab);
 
-  function openPopup() {
+  window.dataLayer = window.dataLayer || [];
+  function pushEvent(name, params) {
+    window.dataLayer.push(Object.assign({ event: name }, params || {}));
+  }
+
+  function openPopup(trigger) {
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+    pushEvent('soulgery_popup_open', { popup_trigger: trigger || 'manual' });
   }
 
   function closePopup() {
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    pushEvent('soulgery_popup_close');
   }
 
-  fab.addEventListener('click', openPopup);
+  fab.addEventListener('click', function() { openPopup('fab_button'); });
   overlay.querySelector('.soulgery-close').addEventListener('click', closePopup);
   overlay.addEventListener('click', function(e) { if (e.target === overlay) closePopup(); });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('active')) closePopup(); });
 
-  // Auto-popup on first visit (once per session)
+  overlay.querySelectorAll('.soulgery-platform-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      pushEvent('soulgery_platform_click', {
+        platform_name: card.getAttribute('data-platform'),
+        platform_url: card.href
+      });
+    });
+  });
+
   if (!sessionStorage.getItem('soulgery_popup_shown')) {
     setTimeout(function() {
-      openPopup();
+      openPopup('auto');
       sessionStorage.setItem('soulgery_popup_shown', '1');
     }, 2000);
   }
 
-  // Expose globally so any button on the site can trigger it
-  window.openSoulgeryPopup = openPopup;
+  window.openSoulgeryPopup = function() { openPopup('manual'); };
 })();
 </script>
