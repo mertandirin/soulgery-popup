@@ -92,11 +92,11 @@
         '</a>' +
         '<a href="https://www.kobo.com" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Kobo">' +
           '<div class="soulgery-platform-icon"><img src="' + logos.kobo + '" alt="Kobo"></div>' +
-          '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Kobo</span><span class="soulgery-platform-format">eBook</span></div>' +
+          '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Kobo</span><span class="soulgery-platform-format">Audiobook</span></div>' +
         '</a>' +
         '<a href="https://play.google.com/store/books" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Google Play Books">' +
           '<div class="soulgery-platform-icon"><img src="' + logos.googleplay + '" alt="Google Play Books"></div>' +
-          '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Google Play Books</span><span class="soulgery-platform-format">eBook</span></div>' +
+          '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Google Play Books</span><span class="soulgery-platform-format">Audiobook</span></div>' +
         '</a>' +
       '</div>' +
     '</div>';
@@ -117,12 +117,14 @@
   function openPopup(trigger) {
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+    sessionStorage.setItem('soulgery_popup_open', '1');
     pushEvent('soulgery_popup_open', { popup_trigger: trigger || 'manual' });
   }
 
   function closePopup() {
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    sessionStorage.removeItem('soulgery_popup_open');
     pushEvent('soulgery_popup_close');
   }
 
@@ -141,7 +143,10 @@
     });
   });
 
-  if (!sessionStorage.getItem('soulgery_popup_shown')) {
+  /* Re-open popup if it was open on the previous page */
+  if (sessionStorage.getItem('soulgery_popup_open')) {
+    openPopup('page_persist');
+  } else if (!sessionStorage.getItem('soulgery_popup_shown')) {
     setTimeout(function() {
       openPopup('auto');
       sessionStorage.setItem('soulgery_popup_shown', '1');
