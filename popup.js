@@ -8,36 +8,59 @@
 
   var css = document.createElement('style');
   css.textContent =
-    '.soulgery-fab{position:fixed;bottom:28px;right:28px;z-index:9999;background:#2665F0;color:#fff;border:none;border-radius:50px;padding:16px 28px;font-family:"Open Sans",sans-serif;font-size:14px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 20px rgba(14,58,91,0.3);transition:background .2s ease,transform .2s ease,box-shadow .2s ease}' +
+    /* FAB button */
+    '.soulgery-fab{position:fixed;bottom:20px;right:20px;z-index:9999;background:#2665F0;color:#fff;border:none;border-radius:50px;padding:14px 22px;font-family:"Open Sans",sans-serif;font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 20px rgba(14,58,91,0.3);transition:background .2s ease,transform .2s ease,box-shadow .2s ease}' +
     '.soulgery-fab:hover{background:#1a52c9;transform:translateY(-2px);box-shadow:0 6px 28px rgba(14,58,91,0.4)}' +
     '.soulgery-fab:active{transform:scale(0.96)}' +
-    '@media(max-width:480px){.soulgery-fab{bottom:20px;right:20px;padding:14px 22px;font-size:13px}}' +
-    '.soulgery-overlay{position:fixed;inset:0;background:rgba(14,58,91,0.55);display:flex;align-items:center;justify-content:center;z-index:10000;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;padding:20px;font-family:"Open Sans",sans-serif}' +
+    /* Overlay */
+    '.soulgery-overlay{position:fixed;inset:0;background:rgba(14,58,91,0.55);display:flex;align-items:center;justify-content:center;z-index:10000;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;padding:16px;font-family:"Open Sans",sans-serif}' +
     '.soulgery-overlay.active{opacity:1;visibility:visible}' +
-    '.soulgery-modal{background:#fff;border-radius:20px;max-width:580px;width:100%;padding:48px 40px 40px;position:relative;box-shadow:0 25px 60px rgba(14,58,91,0.25);transform:translateY(20px) scale(0.95);transition:transform .35s cubic-bezier(0.34,1.56,0.64,1)}' +
+    /* Modal */
+    '.soulgery-modal{background:#fff;border-radius:20px;max-width:580px;width:100%;padding:32px 20px 24px;position:relative;box-shadow:0 25px 60px rgba(14,58,91,0.25);transform:translateY(20px) scale(0.95);transition:transform .35s cubic-bezier(0.34,1.56,0.64,1);max-height:90vh;overflow-y:auto}' +
     '.soulgery-overlay.active .soulgery-modal{transform:translateY(0) scale(1)}' +
-    '.soulgery-close{position:absolute;top:16px;right:20px;background:none;border:none;font-size:28px;color:#0E3A5B;cursor:pointer;line-height:1;padding:4px 8px;border-radius:8px;transition:color .2s ease,background .2s ease}' +
+    '.soulgery-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:28px;color:#0E3A5B;cursor:pointer;line-height:1;padding:4px 8px;border-radius:8px;transition:color .2s ease,background .2s ease}' +
     '.soulgery-close:hover{color:#2665F0;background:#E2ECF8}' +
-    '.soulgery-title{font-family:bookmania,Georgia,"Times New Roman",serif;color:#0E3A5B;font-size:28px;font-weight:400;text-align:center;margin:0 0 6px}' +
-    '.soulgery-subtitle{color:#849172;font-size:15px;text-align:center;margin:0 0 32px;font-family:"Open Sans",sans-serif}' +
-    '.soulgery-platforms{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:0}' +
-    '.soulgery-platform-card{display:flex;flex-direction:column;align-items:center;gap:6px;background:#F7F9FC;border:1.5px solid #E2ECF8;border-radius:14px;padding:24px 16px 20px;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;cursor:pointer}' +
-    '.soulgery-platform-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(14,58,91,0.12);border-color:#2665F0}' +
-    '.soulgery-platform-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;margin-bottom:4px}' +
-    '.soulgery-platform-icon svg{width:100%;height:100%}' +
-    '.soulgery-platform-name{font-weight:700;font-size:14px;color:#0E3A5B;font-family:"Open Sans",sans-serif}' +
-    '.soulgery-platform-format{font-size:12px;color:#849172;font-family:"Open Sans",sans-serif}' +
-    '@media(max-width:600px){' +
-      '.soulgery-platforms{grid-template-columns:1fr 1fr;gap:12px}' +
+    '.soulgery-title{font-family:bookmania,Georgia,"Times New Roman",serif;color:#0E3A5B;font-size:24px;font-weight:400;text-align:center;margin:0 0 4px}' +
+    '.soulgery-subtitle{color:#849172;font-size:14px;text-align:center;margin:0 0 20px;font-family:"Open Sans",sans-serif}' +
+    /* Grid — mobile first: 1 column */
+    '.soulgery-platforms{display:grid;grid-template-columns:1fr;gap:10px}' +
+    /* Cards — mobile first: horizontal row */
+    '.soulgery-platform-card{display:flex;flex-direction:row;align-items:center;gap:14px;background:#F7F9FC;border:1.5px solid #E2ECF8;border-radius:14px;padding:14px 18px;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;cursor:pointer}' +
+    '.soulgery-platform-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(14,58,91,0.12);border-color:#2665F0}' +
+    '.soulgery-platform-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex-shrink:0}' +
+    '.soulgery-platform-icon img{width:100%;height:100%;object-fit:contain}' +
+    '.soulgery-platform-text{display:flex;flex-direction:column;gap:2px}' +
+    '.soulgery-platform-name{display:block;font-weight:700;font-size:14px;color:#0E3A5B;font-family:"Open Sans",sans-serif;line-height:1.3}' +
+    '.soulgery-platform-format{display:block;font-size:12px;color:#849172;font-family:"Open Sans",sans-serif;line-height:1.3}' +
+    /* Tablet: 2 columns, vertical cards */
+    '@media(min-width:481px){' +
+      '.soulgery-fab{bottom:28px;right:28px;padding:16px 28px;font-size:14px}' +
+      '.soulgery-modal{padding:40px 32px 32px}' +
+      '.soulgery-title{font-size:28px;margin-bottom:6px}' +
+      '.soulgery-subtitle{font-size:15px;margin-bottom:28px}' +
+      '.soulgery-platforms{grid-template-columns:1fr 1fr;gap:14px}' +
+      '.soulgery-platform-card{flex-direction:column;padding:22px 16px 18px;gap:8px;text-align:center}' +
+      '.soulgery-platform-icon{width:40px;height:40px;margin-bottom:2px}' +
+      '.soulgery-platform-text{align-items:center}' +
     '}' +
-    '@media(max-width:480px){' +
-      '.soulgery-modal{padding:36px 24px 28px}' +
-      '.soulgery-title{font-size:24px}' +
-      '.soulgery-platforms{grid-template-columns:1fr;gap:12px}' +
-      '.soulgery-platform-card{flex-direction:row;padding:16px 20px;gap:14px}' +
-      '.soulgery-platform-icon{width:36px;height:36px;margin-bottom:0;flex-shrink:0}' +
+    /* Desktop: 3 columns */
+    '@media(min-width:641px){' +
+      '.soulgery-modal{padding:48px 40px 40px}' +
+      '.soulgery-subtitle{margin-bottom:32px}' +
+      '.soulgery-platforms{grid-template-columns:1fr 1fr 1fr}' +
+      '.soulgery-platform-icon{width:44px;height:44px}' +
     '}';
   document.head.appendChild(css);
+
+  /* Platform logo SVGs as data URIs */
+  var logos = {
+    storytel: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23FF6B00'/%3E%3Cpath d='M15 20.5c0-5 4-9 9-9s9 4 9 9' stroke='%23fff' stroke-width='2.8' stroke-linecap='round' fill='none'/%3E%3Crect x='14' y='22' width='5' height='9' rx='2.5' fill='%23fff'/%3E%3Crect x='29' y='22' width='5' height='9' rx='2.5' fill='%23fff'/%3E%3Cpath d='M19 31v2c0 2.2 1.8 4 4 4h2' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E",
+    audible: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23F8991D'/%3E%3Cpath d='M24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12 12 5.4 12 12' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' fill='none'/%3E%3Cpath d='M24 31c-3.9 0-7-3.1-7-7s3.1-7 7-7 7 3.1 7 7' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' fill='none'/%3E%3Cpath d='M24 26c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E",
+    everand: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23E74C2D'/%3E%3Cpath d='M14 24c0-5.5 4.5-10 10-10 4.4 0 8.1 2.8 9.4 6.8' stroke='%23fff' stroke-width='3' stroke-linecap='round' fill='none'/%3E%3Cpath d='M14 24h16' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M24 24c0 5.5-4.5 10-10 10' stroke='%23fff' stroke-width='3' stroke-linecap='round' fill='none' opacity='.6'/%3E%3C/svg%3E",
+    amazon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23232F3E'/%3E%3Cpath d='M12 30c0 0 6 5 12 5s12-5 12-5' stroke='%23FF9900' stroke-width='2.8' stroke-linecap='round' fill='none'/%3E%3Cpath d='M30 31l4 1.5 1.5-4' stroke='%23FF9900' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M17 14h3l2 8 3-6 3 6 2-8h3' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E",
+    kobo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23BF0811'/%3E%3Crect x='12' y='10' width='24' height='28' rx='3' fill='none' stroke='%23fff' stroke-width='2.5'/%3E%3Cpath d='M20 10v28' stroke='%23fff' stroke-width='2' opacity='.4'/%3E%3Cpath d='M25 20h7M25 25h7M25 30h5' stroke='%23fff' stroke-width='2' stroke-linecap='round' opacity='.8'/%3E%3C/svg%3E",
+    googleplay: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%23fff'/%3E%3Crect x='.5' y='.5' width='47' height='47' rx='10' fill='none' stroke='%23ddd'/%3E%3Cpath d='M14 10l20 14-20 14V10z' fill='%234285F4'/%3E%3Cpath d='M14 10l12 14H14V10z' fill='%2334A853'/%3E%3Cpath d='M14 38l12-14H14v14z' fill='%23EA4335'/%3E%3Cpath d='M26 24l8-4.7v9.4L26 24z' fill='%23FBBC05'/%3E%3C/svg%3E"
+  };
 
   var overlay = document.createElement('div');
   overlay.className = 'soulgery-overlay';
@@ -51,27 +74,27 @@
       '<p class="soulgery-subtitle">Available on your favorite platform</p>' +
       '<div class="soulgery-platforms">' +
         '<a href="https://www.storytel.com/in/books/soulgery-a-lifelong-guide-to-unlocking-your-potential-12506798" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Storytel">' +
-          '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="8" width="20" height="28" rx="2" fill="#E2ECF8"/><path d="M14 14h12M14 19h12M14 24h8" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round"/><circle cx="35" cy="28" r="9" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><path d="M32 25v6l5-3z" fill="#0E3A5B"/></svg></div>' +
+          '<div class="soulgery-platform-icon"><img src="' + logos.storytel + '" alt="Storytel"></div>' +
           '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Storytel</span><span class="soulgery-platform-format">Audiobook</span></div>' +
         '</a>' +
         '<a href="https://www.audible.in/pd/Soulgery-Audiobook/B0FTNJK8JQ" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Audible">' +
-          '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 18c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round"/><path d="M12 20c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/><rect x="18" y="22" width="12" height="14" rx="6" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><path d="M20 36v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4" stroke="#0E3A5B" stroke-width="2.5"/><circle cx="24" cy="29" r="2" fill="#0E3A5B"/></svg></div>' +
+          '<div class="soulgery-platform-icon"><img src="' + logos.audible + '" alt="Audible"></div>' +
           '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Audible</span><span class="soulgery-platform-format">Audiobook</span></div>' +
         '</a>' +
         '<a href="https://www.everand.com/audiobook/923526246/Soulgery-A-Lifelong-Guide-to-Unlocking-Your-Potential" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Everand">' +
-          '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="16" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><path d="M18 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round"/><path d="M21 23c0-1.7 1.3-3 3-3s3 1.3 3 3" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="27" r="2" fill="#0E3A5B"/><path d="M24 29v5" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round"/></svg></div>' +
+          '<div class="soulgery-platform-icon"><img src="' + logos.everand + '" alt="Everand"></div>' +
           '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Everand</span><span class="soulgery-platform-format">Audiobook</span></div>' +
         '</a>' +
         '<a href="https://www.amazon.com/Soulgery-Lifelong-Guide-Unlocking-Potential/dp/B0FF81HWH4" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Amazon Books">' +
-          '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M28 6H20C18.9 6 18 6.9 18 8v28c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2z" fill="#E2ECF8"/><path d="M14 14H10c-1.1 0-2 .9-2 2v20c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V16c0-1.1-.9-2-2-2z" fill="#E2ECF8"/><path d="M38 10h-4c-1.1 0-2 .9-2 2v24c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V12c0-1.1-.9-2-2-2z" fill="#E2ECF8"/><path d="M6 40c0 0 8 6 18 6s18-6 18-6" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round"/><path d="M33 42l5 2 2-5" stroke="#0E3A5B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>' +
+          '<div class="soulgery-platform-icon"><img src="' + logos.amazon + '" alt="Amazon"></div>' +
           '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Amazon Books</span><span class="soulgery-platform-format">Paperback & Kindle</span></div>' +
         '</a>' +
         '<a href="https://www.kobo.com" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Kobo">' +
-          '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="6" width="28" height="36" rx="4" fill="#E2ECF8" stroke="#0E3A5B" stroke-width="2.5"/><rect x="16" y="14" width="16" height="12" rx="2" fill="#fff" stroke="#0E3A5B" stroke-width="2"/><path d="M16 32h16" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round"/><path d="M16 36h10" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round" opacity="0.4"/></svg></div>' +
+          '<div class="soulgery-platform-icon"><img src="' + logos.kobo + '" alt="Kobo"></div>' +
           '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Kobo</span><span class="soulgery-platform-format">eBook</span></div>' +
         '</a>' +
         '<a href="https://play.google.com/store/books" class="soulgery-platform-card" target="_blank" rel="noopener" data-platform="Google Play Books">' +
-          '<div class="soulgery-platform-icon"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 8h20l6 6v22c0 2.2-1.8 4-4 4H14c-2.2 0-4-1.8-4-4V12c0-2.2 1.8-4 4-4z" fill="#E2ECF8"/><path d="M34 8l6 6h-6V8z" fill="#fff" stroke="#0E3A5B" stroke-width="1.5"/><path d="M14 8h20l6 6v22c0 2.2-1.8 4-4 4H14c-2.2 0-4-1.8-4-4V12c0-2.2 1.8-4 4-4z" stroke="#0E3A5B" stroke-width="2.5" fill="none"/><path d="M16 22h16M16 27h16M16 32h10" stroke="#0E3A5B" stroke-width="2" stroke-linecap="round"/></svg></div>' +
+          '<div class="soulgery-platform-icon"><img src="' + logos.googleplay + '" alt="Google Play Books"></div>' +
           '<div class="soulgery-platform-text"><span class="soulgery-platform-name">Google Play Books</span><span class="soulgery-platform-format">eBook</span></div>' +
         '</a>' +
       '</div>' +
