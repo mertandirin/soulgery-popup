@@ -1,9 +1,28 @@
 (function() {
-  /* Only activate for ?india_ads visitors — remember across pages */
+  if (document.getElementById('soulgeryOverlay')) return;
+
+  /* Activation logic:
+     1. ?india_ads param → always show (override)
+     2. Already activated this session → show
+     3. Otherwise → check IP geolocation for India (IN) */
   var hasParam = window.location.search.indexOf('india_ads') !== -1;
   if (hasParam) sessionStorage.setItem('soulgery_india', '1');
-  if (!hasParam && !sessionStorage.getItem('soulgery_india')) return;
 
+  if (sessionStorage.getItem('soulgery_india')) {
+    init();
+  } else {
+    fetch('https://ipapi.co/country/')
+      .then(function(r) { return r.text(); })
+      .then(function(country) {
+        if (country.trim() === 'IN') {
+          sessionStorage.setItem('soulgery_india', '1');
+          init();
+        }
+      })
+      .catch(function() { /* geo check failed — don't show */ });
+  }
+
+  function init() {
   if (document.getElementById('soulgeryOverlay')) return;
 
   var link = document.createElement('link');
@@ -159,4 +178,5 @@
   }
 
   window.openSoulgeryPopup = function() { openPopup('manual'); };
+  } /* end init */
 })();

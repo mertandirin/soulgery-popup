@@ -1,9 +1,25 @@
 <script>
 (function() {
+  if (document.getElementById('soulgeryOverlay')) return;
+
   var hasParam = window.location.search.indexOf('india_ads') !== -1;
   if (hasParam) sessionStorage.setItem('soulgery_india', '1');
-  if (!hasParam && !sessionStorage.getItem('soulgery_india')) return;
 
+  if (sessionStorage.getItem('soulgery_india')) {
+    init();
+  } else {
+    fetch('https://ipapi.co/country/')
+      .then(function(r) { return r.text(); })
+      .then(function(country) {
+        if (country.trim() === 'IN') {
+          sessionStorage.setItem('soulgery_india', '1');
+          init();
+        }
+      })
+      .catch(function() {});
+  }
+
+  function init() {
   if (document.getElementById('soulgeryOverlay')) return;
 
   var css = document.createElement('style');
@@ -143,5 +159,6 @@
   }
 
   window.openSoulgeryPopup = function() { openPopup('manual'); };
+  } /* end init */
 })();
 </script>
