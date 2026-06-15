@@ -2,22 +2,34 @@
 (function() {
   if (document.getElementById('soulgeryOverlay')) return;
 
+  /* India targeting, fully client-side — no third-party API, no legal exposure.
+     1. ?india_ads param → always show (ad-link override)
+     2. Already activated this session → show (persists across navigations)
+     3. Otherwise → browser timezone (Asia/Kolkata) or Indian locale (-IN).
+     Timezone comes from the public-domain IANA tz database via the standard
+     Intl API: no request, no key, no attribution, nothing leaves the browser. */
   var hasParam = window.location.search.indexOf('india_ads') !== -1;
   if (hasParam) sessionStorage.setItem('soulgery_india', '1');
 
-  if (sessionStorage.getItem('soulgery_india')) {
-    init();
-  } else {
-    fetch('https://ipapi.co/country/')
-      .then(function(r) { return r.text(); })
-      .then(function(country) {
-        if (country.trim() === 'IN') {
-          sessionStorage.setItem('soulgery_india', '1');
-          init();
-        }
-      })
-      .catch(function() {});
+  if (!sessionStorage.getItem('soulgery_india') && isLikelyIndia()) {
+    sessionStorage.setItem('soulgery_india', '1');
   }
+
+  if (!sessionStorage.getItem('soulgery_india')) return;
+
+  function isLikelyIndia() {
+    try {
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      if (tz === 'Asia/Kolkata' || tz === 'Asia/Calcutta') return true;
+    } catch (e) {}
+    var langs = navigator.languages || [navigator.language || ''];
+    for (var i = 0; i < langs.length; i++) {
+      if (/-IN$/i.test(langs[i])) return true;
+    }
+    return false;
+  }
+
+  init();
 
   function init() {
   if (document.getElementById('soulgeryOverlay')) return;

@@ -1,26 +1,36 @@
 (function() {
   if (document.getElementById('soulgeryOverlay')) return;
 
-  /* Activation logic:
-     1. ?india_ads param → always show (override)
-     2. Already activated this session → show
-     3. Otherwise → check IP geolocation for India (IN) */
+  /* Activation logic — India targeting, fully client-side (no third-party API):
+     1. ?india_ads param → always show (manual override for ad links)
+     2. Already activated this session → show (persists across page navigations)
+     3. Otherwise → detect India via browser timezone (Asia/Kolkata) or an
+        Indian locale (navigator.languages ending in -IN).
+     The timezone string comes from the public-domain IANA tz database via the
+     standard Intl API: no network request, no API key, no attribution, no rate
+     limit, and nothing ever leaves the visitor's browser. */
   var hasParam = window.location.search.indexOf('india_ads') !== -1;
   if (hasParam) sessionStorage.setItem('soulgery_india', '1');
 
-  if (sessionStorage.getItem('soulgery_india')) {
-    init();
-  } else {
-    fetch('https://ipapi.co/country/')
-      .then(function(r) { return r.text(); })
-      .then(function(country) {
-        if (country.trim() === 'IN') {
-          sessionStorage.setItem('soulgery_india', '1');
-          init();
-        }
-      })
-      .catch(function() { /* geo check failed — don't show */ });
+  if (!sessionStorage.getItem('soulgery_india') && isLikelyIndia()) {
+    sessionStorage.setItem('soulgery_india', '1');
   }
+
+  if (!sessionStorage.getItem('soulgery_india')) return;
+
+  function isLikelyIndia() {
+    try {
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      if (tz === 'Asia/Kolkata' || tz === 'Asia/Calcutta') return true;
+    } catch (e) {}
+    var langs = navigator.languages || [navigator.language || ''];
+    for (var i = 0; i < langs.length; i++) {
+      if (/-IN$/i.test(langs[i])) return true;
+    }
+    return false;
+  }
+
+  init();
 
   function init() {
   if (document.getElementById('soulgeryOverlay')) return;
